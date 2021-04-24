@@ -9,7 +9,7 @@ version: 2
 name: Michael Soh
 title: Manager of Cloud Operations
 # email: brett.h@email.co.uk
-website: sohmc.github.io
+# website: sohmc.github.io
 
 # Dark Mode (true/false/never)
 darkmode: false
