@@ -24,10 +24,10 @@ jobs:
       - name: Get Volunteerism
         id: get-volunteerism
         run: |
-          echo VOLUNTEERISM_YAML=$(cat resume.json | jq -r '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json | yq -p=json -o=yaml | sed -e 's/^/      /') >> $GITHUB_ENV
+          echo -e VOLUNTEERISM_YAML=$(jq -r '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json | yq -p=json -o=yaml | sed -e 's/^/      /') >> $GITHUB_ENV
 
       - name: PUT Volunteerism
-        run: echo $VOLUNTEERISM_YAML
+        run: echo -e $VOLUNTEERISM_YAML
         env: 
           VOLUNTEERISM_YAML: ${{ env.VOLUNTEERISM_YAML }}
       
