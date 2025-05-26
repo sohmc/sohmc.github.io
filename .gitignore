@@ -5,3 +5,5 @@ _site
 Gemfile.lock
 *.code-workspace
 .env
+resume.json
+_config-new.yml

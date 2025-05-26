@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'converting-to-api-pull'
 
 permissions:
   contents: read
@@ -10,20 +11,36 @@ permissions:
   id-token: write
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Download resume.json
+        run: |
+          wget -O resume.json ${{ secrets.RESUME_URL }}
+      
+      - name: Get Volunteerism
+        id: get-volunteerism
+        run: |
+          VOLUNTEERISM_YAML=$(jq -r '.data.sections.volunteer.items | map(select(.visible == true)) | .[] | "      - title: " + .position + "\n        subtitle: " + .organization + "\n        caption: " + .date + "\n        quote: | #\n          " + .summary')
+
+      - name: PUT Volunteerism
+        run: echo $VOLUNTEERISM_YAML
+        env: 
+          VOLUNTEERISM_YAML: ${{ env.VOLUNTEERISM_YAML }}
+      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
