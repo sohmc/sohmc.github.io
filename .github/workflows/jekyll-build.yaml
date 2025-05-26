@@ -29,6 +29,8 @@ jobs:
           VOLUNTEERISM_YAML=$(echo $VOLUNTEERISM_JSON | yq -p=json -o=yaml | sed -e 's/^/      /')
 
           echo -e $VOLUNTEERISM_YAML
+
+          echo $VOLUNTEERISM_YAML | yq 'tag == "!!map" or tag== "!!seq"'
       
       # - name: Setup Pages
       #   id: pages
