@@ -24,7 +24,7 @@ jobs:
       - name: Get Volunteerism
         id: get-volunteerism
         run: |
-          echo VOLUNTEERISM_YAML=$(jq -r '.data.sections.volunteer.items | map(select(.visible == true)) | .[] | "      - title: " + .position + "\n        subtitle: " + .organization + "\n        caption: " + .date + "\n        quote: | #\n          " + .summary')
+          echo VOLUNTEERISM_YAML=$(cat resume.json | jq -r '.data.sections.volunteer.items | map(select(.visible == true)) | .[] | "      - title: " + .position + "\n        subtitle: " + .organization + "\n        caption: " + .date + "\n        quote: | #\n          " + .summary')
 
       - name: PUT Volunteerism
         run: echo $VOLUNTEERISM_YAML
