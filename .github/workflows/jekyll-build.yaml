@@ -26,9 +26,7 @@ jobs:
         run: |
           VOLUNTEERISM_YAML=$(jq -rc '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json | yq -p=json -o=yaml | sed -e 's/^/      /')
 
-          echo -e $VOLUNTEERISM_YAML
-
-          echo -e "${VOLUNTEERISM_YAML}" | yq 'tag == "!!map" or tag== "!!seq"'
+          sed -i -e "s/\$VOLUNTEERISM/${VOLUNTEERISM_YAML}" _config.yml
       
       # - name: Setup Pages
       #   id: pages
