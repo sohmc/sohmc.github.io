@@ -24,25 +24,25 @@ jobs:
       - name: Get Volunteerism
         id: get-volunteerism
         run: |
-          echo VOLUNTEERISM_YAML=$(jq -r '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json) >> $GITHUB_ENV
+          echo "VOLUNTEERISM_YAML=$(jq -rc '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json)" >> $GITHUB_ENV
 
       - name: PUT Volunteerism
         run: echo $VOLUNEERISM_YAML | yq -p=json -o=yaml | sed -e 's/^/      /'
         env: 
           VOLUNTEERISM_YAML: ${{ env.VOLUNTEERISM_YAML }}
       
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+      # - name: Setup Pages
+      #   id: pages
+      #   uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+      # - name: Build with Jekyll
+      #   uses: actions/jekyll-build-pages@v1
+      #   with:
+      #     source: ./
+      #     destination: ./_site
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
 
   # Deployment job
   deploy:
@@ -51,6 +51,7 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-latest
     needs: build
+    if: ${{ github.event_name == 'DISABLED'}}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
