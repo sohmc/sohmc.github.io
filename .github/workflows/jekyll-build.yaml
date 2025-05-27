@@ -24,9 +24,11 @@ jobs:
       - name: Get Volunteerism
         id: get-volunteerism
         run: |
-          VOLUNTEERISM_YAML=$(jq -rc '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json | yq -p=json -o=yaml | sed -e 's/^/      /')
+          # Grab all items within the volunteer section and convert it into yaml
+          VOLUNTEERISM_YAML="$(jq -rc '.data.sections.volunteer.items | [map(select(.visible == true))[] | {title: .position, subtitle: .organization, caption: .date, quote: .summary}]' resume.json | yq -p=json -o=yaml | sed -e 's/^/        /')"
 
-          sed -i -e "s/\$VOLUNTEERISM/${VOLUNTEERISM_YAML}/" _config.yml
+          # substitute the variable in the config, replacing newlines with \\n so that it will parse
+          sed -i -e "s#\$VOLUNTEERISM#${VOLUNTEERISM_YAML//$'\n'/\\n}#" _config.yml
 
           cat _config.yml
       
