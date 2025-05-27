@@ -76,9 +76,9 @@ content:
         description: |
           In Inova's brand new Genomics department, I was responsible for authoring and then enforcing many IT policies regarding data retention and best practices.  I was also directly responsible for moving the team from a Waterfall approach to AGILE, improving our effeciency and throughput.
 
-  # - title: Volunteerism # Title for the section
-  #   layout: list # Type of content section (list/text)
-  #   content: $VOLUNTEERISM
+  - title: Volunteerism # Title for the section
+    layout: list # Type of content section (list/text)
+    content: $VOLUNTEERISM
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
