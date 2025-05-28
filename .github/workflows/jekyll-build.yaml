@@ -22,8 +22,10 @@ jobs:
           wget -O resume.json ${{ secrets.RESUME_URL }}
       
       - name: Get Volunteerism
-        id: get-volunteerism
-        run: bash .ci/config-builder.bash
+        run: bash .ci/config-builder.bash volunteer VOLUNTEERISM
+
+      - name: Get Education
+        run: bash .ci/config-builder.bash education EDUCATION
       
       # - name: Setup Pages
       #   id: pages

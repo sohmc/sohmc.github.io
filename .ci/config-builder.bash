@@ -7,4 +7,3 @@ VARIABLE_NAME=$2
 sed -i -e "s#\$${VARIABLE_NAME}#\\n${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
 
 cat ./_config.yml
-
