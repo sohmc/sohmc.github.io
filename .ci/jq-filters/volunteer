@@ -1,1 +1,1 @@
-.data.sections.volunteer.items | [map(select(.visible == true))[] | {layout: "left", title: .position, subtitle: .organization, link: .url.href, link_text: .url.label, caption: .date, quote: .summary}]
+.data.sections.volunteer.items | [map(select(.visible == true))[] | {layout: "left", title: .position, sub_title: .organization, link: .url.href, link_text: .url.label, caption: .date, quote: .summary}]

@@ -1,1 +1,1 @@
-.data.sections.education.items | [map(select(.visible == true))[] | {layout: "left", title: .institution, subtitle: .studyType, link: .url.href, link_text: .url.label, caption: .date, quote: .area}]
+.data.sections.education.items | [map(select(.visible == true))[] | {layout: "left", title: .institution, sub_title: .studyType, link: .url.href, link_text: .url.label, caption: .date, quote: .area}]
