@@ -21,6 +21,9 @@ jobs:
         run: |
           wget -O resume.json ${{ secrets.RESUME_URL }}
       
+      - name: Get Summary
+        run: bash .ci/config-builder.bash summary ABOUT_CONTENT
+    
       - name: Get Volunteerism
         run: bash .ci/config-builder.bash volunteer VOLUNTEERISM
 

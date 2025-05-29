@@ -50,7 +50,7 @@ linkedin_username: sohmc
 # about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Broadly skilled in cloud technologies and chaos engineering practices with a background in full-stack web app development, providing innovative solutions to complex challenges.
+  $ABOUT_CONTENT
 
 content:
 
