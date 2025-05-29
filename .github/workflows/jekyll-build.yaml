@@ -22,7 +22,9 @@ jobs:
           wget -O resume.json ${{ secrets.RESUME_URL }}
       
       - name: Get Summary
-        run: bash .ci/config-builder.bash summary ABOUT_CONTENT
+        run: |
+          BUILT_YAML="$(jq -rc -f .ci/jq-filters/summary resume.json | sed -e 's/^/  /')")"
+          sed -i -e "s#\$ABOUT_CONTENT#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
     
       - name: Get Volunteerism
         run: bash .ci/config-builder.bash volunteer VOLUNTEERISM
