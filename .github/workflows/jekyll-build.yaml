@@ -23,7 +23,7 @@ jobs:
       
       - name: Get Summary
         run: |
-          BUILT_YAML="$(jq -rc -f .ci/jq-filters/summary resume.json | sed -e 's/^/  /')")"
+          BUILT_YAML="$(jq -rc -f .ci/jq-filters/summary resume.json | sed -e 's/^/  /')"
           sed -i -e "s#\$ABOUT_CONTENT#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
     
       - name: Get Volunteerism
