@@ -26,6 +26,9 @@ jobs:
 
       - name: Get Education
         run: bash .ci/config-builder.bash education EDUCATION
+
+      - name: Get Experience
+        run: bash .ci/config-builder.bash experience EXPERIENCE
       
       - name: Setup Pages
         id: pages
