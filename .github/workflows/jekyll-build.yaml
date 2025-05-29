@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'converting-to-api-pull'
 
 permissions:
   contents: read
@@ -10,20 +11,40 @@ permissions:
   id-token: write
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Download resume.json
+        run: |
+          wget -O resume.json ${{ secrets.RESUME_URL }}
+      
+      - name: Get Summary
+        run: |
+          BUILT_YAML="$(jq -rc -f .ci/jq-filters/summary resume.json | sed -e 's/^/  /')"
+          sed -i -e "s#\$ABOUT_CONTENT#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
+    
+      - name: Get Volunteerism
+        run: bash .ci/config-builder.bash volunteer VOLUNTEERISM
+
+      - name: Get Education
+        run: bash .ci/config-builder.bash education EDUCATION
+
+      - name: Get Experience
+        run: bash .ci/config-builder.bash experience EXPERIENCE
+      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
@@ -34,6 +55,7 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-latest
     needs: build
+    # if: ${{ github.event_name == 'DISABLED'}}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

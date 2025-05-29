@@ -7,7 +7,7 @@ version: 2
 
 # Personal info
 name: Michael Soh
-title: Manager of Cloud Operations
+title: Reliability Practices Evangelist
 # email: brett.h@email.co.uk
 # website: sohmc.github.io
 
@@ -17,7 +17,7 @@ darkmode: false
 # Social links
 # twitter_username: facespics
 github_username:  sohmc
-stackoverflow_username: "1652942/scuba_mike"
+# stackoverflow_username: "1652942/scuba_mike"
 # dribbble_username: jekyll
 # facebook_username: jekyll
 # flickr_username: jekyll
@@ -30,15 +30,15 @@ linkedin_username: sohmc
 # orcid_username: 0000-0000-0000-0000
 
 # Additional icon links
-additional_links:
+# additional_links:
 # - title: itsgoingto.be
 #   icon: fas fa-globe
 #   url: https://www.itsgoingto.be
 # - title: another link
 #   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
 #   url: Link url (eg. https://google.com)
-  - title: "Moderna - First Dose"
-    icon: fas fa-syringe
+# - title: "Moderna - First Dose"
+#   icon: fas fa-syringe
 
 # Google Analytics and Tag Manager
 # Using more than one of these may cause issues with reporting
@@ -50,42 +50,22 @@ additional_links:
 # about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Good day!  I'm Michael Soh and I am a highly skilled computer engineer with management experience, strong leadership qualities, and a focus on vulnerability remediation.
-
-  My top skills: AWS, CI/CD Pipelines, Node.js/JavaScript
+  $ABOUT_CONTENT
 
 content:
 
   - title: Experience # Title for the section
     layout: list # Type of content section (list/text)
-    content:
-      - layout: left
-        title: Capital One
-        link: capitalone.com
-        # link_text: boringcompany.com
-        sub_title: Manager of Cloud Operations
-        caption: November 2018 - Present
-        quote: >
-          Vulnerability and Cloud Deployment Subject Matter Expert for an entire line of business.
-        description: | # this will include new lines to allow paragraphs
-            Going from development to production takes a lot of hard work.  I made sure that teams that deployed into the cloud followed all of our policies and guidelines, which limited risk exposure and ensures that teams were well-managed prior to and while deployed in Capital One's AWS environment.
-      
-      - layout: left
-        title: Inova Health Systems
-        link: inova.org
-        sub_title: Manager of Laboratory Informatics, Analytics, and Applications Support
-        caption: August 2014 - November 2018
-        description: |
-          In Inova's brand new Genomics department, I was responsible for authoring and then enforcing many IT policies regarding data retention and best practices.  I was also directly responsible for moving the team from a Waterfall approach to AGILE, improving our effeciency and throughput.
+    content: $EXPERIENCE
+
+  - title: Volunteerism # Title for the section
+    layout: list # Type of content section (list/text)
+    content: $VOLUNTEERISM
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
-    content:
-      - layout: left
-        title: University of Maryland
-        caption: 2000 - 2005
-        sub_title: BA English Literature & Film Studies
-        
+    content: $EDUCATION
+  
   - title: Projects # Title for the section
     layout: list # Type of content section (list/text)
     content:

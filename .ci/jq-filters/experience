@@ -1,0 +1,1 @@
+.data.sections.experience.items | [map(select(.visible == true))[] | {layout: "left", title: .company, sub_title: .position, link: .url.href, link_text: .url.label, caption: .date, description: .summary}]
