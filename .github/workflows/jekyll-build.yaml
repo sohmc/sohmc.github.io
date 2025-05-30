@@ -21,18 +21,16 @@ jobs:
           wget -O resume.json ${{ secrets.RESUME_URL }}
       
       - name: Get Summary
-        run: |
-          BUILT_YAML="$(jq -rc -f .ci/jq-filters/summary resume.json | sed -e 's/^/  /')"
-          sed -i -e "s#\$ABOUT_CONTENT#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
+        run: bash .ci/build-yaml.bash -t -f summary ABOUT_CONTENT
     
       - name: Get Volunteerism
-        run: bash .ci/config-builder.bash volunteer VOLUNTEERISM
+        run: bash .ci/build-yaml.bash -p -s 6 -f volunteer VOLUNTEERISM
 
       - name: Get Education
-        run: bash .ci/config-builder.bash education EDUCATION
+        run: bash .ci/build-yaml.bash -p -s 6 -f education EDUCATION
 
       - name: Get Experience
-        run: bash .ci/config-builder.bash experience EXPERIENCE
+        run: bash .ci/build-yaml.bash -p -s 6 -f experience EXPERIENCE
       
       - name: Setup Pages
         id: pages
