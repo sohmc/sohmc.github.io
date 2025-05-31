@@ -81,7 +81,7 @@ content:
           #   icon: fab fa-github
           #   url: Link to project (eg. sproogen.github.io/modern-resume-theme)
         description: | # this will include new lines to allow paragraphs
-          I created this project to allow me to continue using php's mysqli libraries so I didn't have to refactor my code.  With 10+K pulls, I think it's the most popular thing I've ever created.
+          I created this project to allow me to continue using php's mysqli libraries so I didn't have to refactor my code. Now deprecated, the repo still serves as a great reference on how I built a fairly robust CI/CD pipeline based on Dockerhub's php releases.
     
       - layout: top-middle
         title: cloudflare-ddns-py
@@ -93,11 +93,10 @@ content:
     layout: text
     content: | # this will include new lines to allow paragraphs
       Alongside my interests in AWS and software engineering, some of my other interests and hobbies are:
-      - Gardening
+      - Agile Gardening
       - Personal Development
       - Exploring local parks
       - Finding new restaurants
-
 
 # Footer
 footer_show_references: true
