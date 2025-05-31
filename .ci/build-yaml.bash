@@ -53,9 +53,9 @@ if [[ $SPACE_NUM -ge 0 ]]; then
 fi
 
 if [ "$PREFIX_NEWLINE" = true ]; then
-  sed -e "s#\$${SECTION_VAR}#\\n${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
+  sed -i -e "s#\$${SECTION_VAR}#\\n${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
 else
-  sed -e "s#\$${SECTION_VAR}#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
+  sed -i -e "s#\$${SECTION_VAR}#${BUILT_YAML//$'\n'/\\n}#" ./_config.yml
 fi
 
-# cat ./_config.yml
+cat ./_config.yml
